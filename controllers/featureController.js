@@ -6,7 +6,7 @@ const Feature = require("../models/featureModel");
 const Case = require("../models/caseModel");
 
 exports.getAllFeatures = catchAsync(async (req, res, next) => {
-  const features = await Feature.find().populate("caseId");
+  const features = await Feature.find().populate("caseStudy");
   //   .populate("creator");
 
   res.status(200).json({
@@ -19,8 +19,8 @@ exports.getAllFeatures = catchAsync(async (req, res, next) => {
 });
 
 exports.createFeature = catchAsync(async (req, res, next) => {
-  const caseId = req.params.caseId;
-  //   const creator = Case.findOne({ id: caseId }).creator;
+  const caseStudy = req.params.userId;
+  //   const creator = Case.findOne({ id: userId }).creator;
   //   console.log("creator=======?", creator);
 
   const newFeature = await Feature.create({
@@ -28,7 +28,7 @@ exports.createFeature = catchAsync(async (req, res, next) => {
     moisture: req.body.mois,
     humidity: req.body.hum,
     rain: req.body.rain,
-    caseId,
+    caseStudy,
     // creator,
   });
 
@@ -41,8 +41,8 @@ exports.createFeature = catchAsync(async (req, res, next) => {
 });
 
 exports.getCaseFeatures = catchAsync(async (req, res, next) => {
-  const caseId = req.params.caseId;
-  const features = await Feature.find({ caseId }).populate("caseId");
+  const userId = req.params.userId;
+  const features = await Feature.find({ userId }).populate("caseStudy");
 
   //   const cases = await Case.find({ creator }).populate("creator");
 

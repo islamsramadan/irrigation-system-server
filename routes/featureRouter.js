@@ -8,7 +8,7 @@ router.route("/").get(featureController.getAllFeatures);
 //   .post(userController.getAllAdmins, disasterController.createDisaster);
 
 router
-  .route("/:caseId")
+  .route("/:userId")
   .get(featureController.getCaseFeatures)
   .post(featureController.createFeature);
 

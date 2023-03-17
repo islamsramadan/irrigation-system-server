@@ -19,9 +19,9 @@ const featureSchema = new mongoose.Schema({
     required: [true, "rain is required"],
   },
 
-  caseId: {
+  caseStudy: {
     type: mongoose.Schema.ObjectId,
-    ref: "Case",
+    ref: "User",
   },
   creator: { type: mongoose.Schema.ObjectId, ref: "User" },
   createdAt: {
