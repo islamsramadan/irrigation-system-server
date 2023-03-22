@@ -4,7 +4,7 @@ const router = express.Router();
 
 const featureController = require("../controllers/featureController");
 
-router.route("/").get(featureController.getAllFeatures);
+// router.route("/").get(featureController.getAllFeatures);
 //   .post(userController.getAllAdmins, disasterController.createDisaster);
 
 router

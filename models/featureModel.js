@@ -23,7 +23,10 @@ const featureSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "User",
   },
-  creator: { type: mongoose.Schema.ObjectId, ref: "User" },
+  message: {
+    type: String,
+    default: "",
+  },
   createdAt: {
     type: Date,
   },
