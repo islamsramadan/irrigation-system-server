@@ -40,6 +40,14 @@ const userSchema = new mongoose.Schema({
     minlength: [8, "Please enter a password with min 8 characters"],
     select: false,
   },
+  lastFeatures: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Feature",
+  },
+  automatic: {
+    type: Boolean,
+    default: false,
+  },
 
   lat: {
     type: Number,

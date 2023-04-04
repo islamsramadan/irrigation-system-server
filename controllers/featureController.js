@@ -6,6 +6,7 @@ const Feature = require("../models/featureModel");
 const Case = require("../models/caseModel");
 
 const { Vonage } = require("@vonage/server-sdk");
+const User = require("../models/userModel");
 
 exports.getAllFeatures = catchAsync(async (req, res, next) => {
   const features = await Feature.find().populate("caseStudy");
@@ -79,10 +80,15 @@ exports.createFeature = catchAsync(async (req, res, next) => {
     message,
   });
 
+  const user = await User.findByIdAndUpdate(caseStudy, {
+    lastFeatures: newFeature._id,
+  });
+
   res.status(201).json({
     status: "success",
     data: {
       newFeature,
+      user,
     },
   });
 });

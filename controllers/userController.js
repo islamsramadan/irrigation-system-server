@@ -42,7 +42,19 @@ exports.getMe = (req, res, next) => {
 //   });
 // };
 
-exports.getAllUsers = factory.getAll(User);
+// exports.getAllUsers = factory.getAll(User);
+exports.getAllUsers = catchAsync(async (req, res, next) => {
+  const users = await User.find({ role: "user" }).populate("lastFeatures");
+
+  res.status(200).json({
+    status: "success",
+    results: users.length,
+    data: {
+      users,
+    },
+  });
+});
+
 exports.getUser = factory.getOne(User);
 // // not for update password
 // exports.updateUser = factory.updateOne(User);
@@ -70,6 +82,27 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   });
 
   const updatedUser = await User.findById(req.user._id);
+
+  // console.log(updatedUser);
+
+  res.status(200).json({
+    status: "success",
+    user: updatedUser,
+  });
+});
+
+exports.updateUser = catchAsync(async (req, res, next) => {
+  // console.log(req.file);
+  // console.log(req.body);
+
+  // if (req.file) filteredBody.photo = req.file.filename;
+
+  // console.log(req.file.filename);
+  await User.findByIdAndUpdate(req.params.userId, {
+    automatic: req.body.automatic,
+  });
+
+  const updatedUser = await User.findById(req.params.userId);
 
   // console.log(updatedUser);
 

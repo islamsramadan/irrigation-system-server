@@ -10,15 +10,15 @@ router.post("/login", authController.logIn);
 
 router.get(
   "/",
-  authController.protect,
-  authController.restrictTo("admin"),
+  // authController.protect,
+  // authController.restrictTo("admin"),
   userController.getAllUsers
 );
 
 router.get(
   "/:id",
-  authController.protect,
-  authController.restrictTo("admin"),
+  // authController.protect,
+  // authController.restrictTo("admin"),
   userController.getUser
 );
 
@@ -30,10 +30,9 @@ router.get(
 );
 
 router.patch(
-  "/updateMe",
-  authController.protect,
-  userController.uploadUserPhoto,
-  userController.updateMe
+  "/update/:userId",
+  // authController.protect,
+  userController.updateUser
 );
 
 // // To protect all the routes below
