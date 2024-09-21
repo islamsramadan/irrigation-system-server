@@ -3,6 +3,7 @@ const Feature = require("../models/featureModel");
 const User = require("../models/userModel");
 
 exports.getFeatures = async (caseStudy) => {
+  console.log("start Reading ======================>");
   try {
     const response = await axios.request({
       method: "get",
