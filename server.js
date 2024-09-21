@@ -35,7 +35,7 @@ const server = app.listen(port, () => {
 // Trigger the function every minute (60000 *60 ms = 1 hour)
 setInterval(() => {
   sensorReadings.getFeatures("640fb4795d60e64f83b730c9");
-}, 60000);
+}, 60000 * 60);
 
 process.on("unhandledRejection", (err) => {
   console.log(err.name, err.message);
