@@ -36,13 +36,18 @@ exports.getFeatures = async (caseStudy) => {
       console.log("readings", readings);
 
       if (temperature && moisture && humidity && rain) {
+        let message = "";
+        if (moisture * 1 < 50) {
+          message = `kindly open the pump as moisture(${moisture}) needs to be more than 50`;
+        }
+
         const newFeatureData = {
           temperature,
           moisture,
           humidity,
           rain,
           caseStudy,
-          // message,
+          message,
         };
         // console.log("data ==================", newFeatureData);
         const newFeature = await Feature.create(newFeatureData);
