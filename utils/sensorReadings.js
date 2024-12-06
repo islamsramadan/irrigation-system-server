@@ -29,7 +29,7 @@ exports.getFeatures = async (caseStudy) => {
 
       const temperature = readings[0];
       const moisture = readings[1];
-      const humidity = readings[2];
+      const humidity = (readings[2] * 1) / 20;
       const rain =
         readings[3] === 1 ? "Rainy" : readings[3] === 0 ? "Dry" : "Wet";
 
